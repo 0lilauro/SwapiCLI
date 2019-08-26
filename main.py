@@ -14,7 +14,7 @@ ask and see the results ;)
 
 Options:
 
-  get <object>                This command can be used to focus in a specificly object of swapi. \n It can be 'films', 'people', 'planets', 'species', 'starships' or 'vehicles' 
+  get <object>                This command can be used to focus in a specificly object of swapi. \nIt can be 'films', 'people', 'planets', 'species', 'starships' or 'vehicles' 
   -h --help                   Show this CLI options in the interface.
   -v --version                Show version.
   -i <id> --id=<id>           Object's id. Used to find a exactly object in API's search.
@@ -28,7 +28,7 @@ from docopt import docopt
 from schema import Schema, And, Or, Use, SchemaError
 import swapi_error
 from models.swapi_config import SwapiConfig
-from controller.swapi_controller import SwapiController
+from controllers.swapi_controller import SwapiController
 
 if __name__ == '__main__':
   arguments = docopt(__doc__, version='Swapi CLI 1.0')
@@ -58,6 +58,8 @@ if __name__ == '__main__':
     swapi_config = SwapiConfig()
     swapi_config.read_arguments(arguments)
     swapi_controller = SwapiController(swapi_config)
+    # response = swapi_controller.run()
+    # print(response)
   except SchemaError as e:
     exit(e)
 

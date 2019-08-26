@@ -3,8 +3,6 @@ import requests
 class SwapiService:
 
     def __init__(self):
-        super().__init__()
-    
         self._base_url = "https://swapi.co/api/"
 
     def build_find_url(self, swapi_object, id=None):

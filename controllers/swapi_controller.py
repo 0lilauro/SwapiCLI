@@ -1,16 +1,14 @@
 from pprint import pprint
-from .base_controller import BaseController
+# from .base_controller import BaseController
 from services.swapi_service import SwapiService
 from models.swapi_config import SwapiConfig
 
-class SwapiController(BaseController):
+class SwapiController:
     
     def __init__(self, swapi_config = None):
-        super().__init__()
         self._swapi_config = None
-        if swapi_config:
+        if swapi_config is not None:
             self._swapi_config = swapi_config
-            self.run()
         
     @property
     def swapi_config(self):
@@ -19,10 +17,10 @@ class SwapiController(BaseController):
     @swapi_config.setter
     def swapi_config(self, value):
         try: 
-            if type(value) is SwapiConfig:
+            if isinstance(swapi_config, SwapiConfig):
                 self._swapi_config = value
             elif value is None:
-                self._search = None
+                pass
             else: 
                 raise TypeError("The value passed to SwapiConfig property is not a SwapiModel instance")
         except Exception as e:
@@ -58,6 +56,9 @@ class SwapiController(BaseController):
             except:
                 print("An error has been occurred in the attemp to convert the search to JSON") 
             finally: 
-               pprint(result)                 
+               return result
+        else:
+            print('Please use a valid command. Type "python main.py" to see the options and usage !')
+            return {}
                    
             
