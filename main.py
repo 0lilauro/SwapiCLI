@@ -2,6 +2,9 @@
 
 Usage:
   swapi.py 
+  swapi.py pilot --name=<name>
+  swapi.py pilot --fastest 
+  swapi.py get <object> 
   swapi.py get <object> 
   swapi.py get <object> (--id=<id>|--search=<text>|--schema)
   swapi.py get <object> (--id=<id> --wookiee| --search=<text> --wookiee)
@@ -14,6 +17,8 @@ ask and see the results ;)
 
 Options:
 
+  --fastest                   Using this option you can see the faster pilot and his starships.
+  -n <name> --name=<name>     Use this option so see the max atmosphering speed and starships from the pilot choosen.
   get <object>                This command can be used to focus in a specificly object of swapi. \nIt can be 'films', 'people', 'planets', 'species', 'starships' or 'vehicles' 
   -h --help                   Show this CLI options in the interface.
   -v --version                Show version.
@@ -38,6 +43,9 @@ if __name__ == '__main__':
   
   schema = Schema({
     'get': Or(True, False, error=swapi_error.get),
+    'pilot': Or(True, False, error=swapi_error.pilot),
+    '--name': Or(None, And(Use(str), lambda n: n.strip(), error=swapi_error.name)),
+    '--fastest': Or(True, False, error=swapi_error.fastest),
     '<object>': Or(None, And(Use(str), lambda obj: obj in ('films', 'people', 'planets', 'species', 'starships', 'vehicles'),
         error=swapi_error.swapi_object
     )),
@@ -53,12 +61,12 @@ if __name__ == '__main__':
   # 'PATH': And(os.path.exists, error='PATH should exist'),
   
   try:
-    # print(arguments)
+    print(arguments)
     args = schema.validate(arguments)
     swapi_config = SwapiConfig()
     swapi_config.read_arguments(arguments)
     swapi_controller = SwapiController(swapi_config)
-    # response = swapi_controller.run()
+    response = swapi_controller.run()
     # print(response)
   except SchemaError as e:
     exit(e)

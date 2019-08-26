@@ -27,3 +27,8 @@ class SwapiService:
             endpoint,
             params=params
         )        
+
+    def simple_request(self, endpoint):
+        return requests.get(
+            endpoint,
+        )        

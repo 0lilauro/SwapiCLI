@@ -9,6 +9,9 @@ class SwapiConfig():
     self._help = None
     self._version = None
     self._search = None
+    self._name = None
+    self._fastest = None
+    self._pilot = None
 
   @property
   def get(self):
@@ -133,6 +136,50 @@ class SwapiConfig():
     except Exception as e:
       print(str(e))
 
+  @property
+  def pilot(self):
+    return self._pilot
+  
+  @pilot.setter
+  def pilot(self, value):
+    try: 
+      if type(value) is bool:
+        self._pilot = value
+      else: 
+        raise TypeError("The value passed to pilot property is invalid")
+    except Exception as e:
+      print(str(e))
+
+  @property
+  def fastest(self):
+    return self._fastest
+  
+  @fastest.setter
+  def fastest(self, value):
+    try: 
+      if type(value) is bool:
+        self._fastest = value
+      else: 
+        raise TypeError("The value passed to fastest property is invalid")
+    except Exception as e:
+      print(str(e))
+
+  @property
+  def name(self):
+    return self._name
+  
+  @name.setter
+  def name(self, value):
+    try: 
+      if type(value) is str and value.strip:
+        self._name = value
+      elif value is None:
+        self._name = None
+      else: 
+        raise TypeError("The value passed to name property is invalid")
+    except Exception as e:
+      print(str(e))
+
   def read_arguments(self, arguments):
     try: 
       self.get = arguments['get']
@@ -143,5 +190,8 @@ class SwapiConfig():
       self.search = arguments['--search']
       self.help = arguments['--help']
       self.version = arguments['--version']
+      self.fastest = arguments['--fastest']
+      self.name = arguments['--name']
+      self.pilot = arguments['pilot']
     except Exception as e:
       print(str(e))
