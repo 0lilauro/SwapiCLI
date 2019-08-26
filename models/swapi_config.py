@@ -4,10 +4,11 @@ class SwapiConfig():
     self._get = None
     self._object_swapi = None
     self._schema = None
-    self._wookie = None
+    self._wookiee = None
     self._id = None
     self._help = None
     self._version = None
+    self._search = None
 
   @property
   def get(self):
@@ -55,16 +56,16 @@ class SwapiConfig():
       print(str(e))
 
   @property
-  def wookie(self):
-    return self._wookie
+  def wookiee(self):
+    return self._wookiee
   
-  @wookie.setter
-  def wookie(self, value):
+  @wookiee.setter
+  def wookiee(self, value):
     try: 
       if type(value) is bool:
-        self._wookie = value
+        self._wookiee = value
       else: 
-        raise TypeError("The value passed to wookie property is invalid")
+        raise TypeError("The value passed to wookiee property is invalid")
     except Exception as e:
       print(str(e))
 
@@ -103,14 +104,32 @@ class SwapiConfig():
   @id.setter
   def id(self, value):
     try: 
-      if (value is None) or type(value) is int or type(value) is str:
-        if int(value) > 0:
-          self._id = value
+      if value is None or type(value) is int or type(value) is str:
+        if value is not None and int(value) > 0:
+          self._id = int(value)
+        elif value is None:
+          self._id = None
         else: 
           raise ValueError("The value of id must be an interger greater than 0")
       else: 
         print(type(value))
         raise TypeError("The value passed to id property is invalid")
+    except Exception as e:
+      print(str(e))
+      
+  @property
+  def search(self):
+    return self._search
+  
+  @search.setter
+  def search(self, value):
+    try: 
+      if type(value) is str and value.strip:
+        self._search = value
+      elif value is None:
+        self._search = None
+      else: 
+        raise TypeError("The value passed to search property is invalid")
     except Exception as e:
       print(str(e))
 
@@ -119,8 +138,9 @@ class SwapiConfig():
       self.get = arguments['get']
       self.object_swapi = arguments['<object>']
       self.schema = arguments['--schema']
-      self.wookie = arguments['--wookie']
-      self.id = int(arguments['--id'])
+      self.wookiee = arguments['--wookiee']
+      self.id = arguments['--id']
+      self.search = arguments['--search']
       self.help = arguments['--help']
       self.version = arguments['--version']
     except Exception as e:
