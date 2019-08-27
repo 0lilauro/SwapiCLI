@@ -68,7 +68,6 @@ class SwapiController:
             return result
 
     def pilot_command(self):
-        final_response = None
         pilots = []
         result = {}
         swapi_service = SwapiService()
@@ -90,11 +89,11 @@ class SwapiController:
                 result = response.json()
             except:
                 print("An error has been occurred in the attemp to convert the search to JSON")
-            
-            if "results" in result:
-                pilotOne = self.fill_pilot(result[0])
+
+            if "results" in result and len(result['results']) > 0:
+                pilotOne = self.fill_pilot(result['results'][0])
                 if pilotOne is not None:
-                    pprint(pilotOne)
+                    Utils.print_one(pilotOne)
                 else: 
                     print("No pilot with the typed name was found.")
             else: 
@@ -121,7 +120,10 @@ class SwapiController:
                 if result and 'next' in result:
                     next_page = result['next']
             
-            pprint(pilots)
+            max_pilot = Utils.find_max_speed(pilots)
+            pprint(max_pilot.__dict__)
+            pprint(max_pilot.starships.__dict__)
+        return None
 
     def fill_starship(self, endpoint):
         starship = Starships()
@@ -140,7 +142,7 @@ class SwapiController:
             if 'model' in result:
                 starship.model = str(result['model']).upper() 
             if 'max_atmosphering_speed' in result:
-                starship.max_speed = Utils.find_speed(result['model']) 
+                starship.max_speed = Utils.find_speed(result['max_atmosphering_speed']) 
             return starship
         else:
             return None
