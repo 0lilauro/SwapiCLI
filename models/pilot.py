@@ -1,7 +1,7 @@
 class Pilot: 
 
     def __init__(self):
-        self._name = None,
+        self._name = None
         self.starships = []
     
     @property

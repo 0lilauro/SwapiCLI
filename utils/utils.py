@@ -11,14 +11,15 @@ class Utils:
     @staticmethod
     def find_speed(text):
         speed = 0
-        ocurrencies = list(re.findall(r"(\d+\.\d+)|(\d+)|(\.\d+)", text.strip().lower()))
-        pprint(ocurrencies)
+        ocurrencies = list(re.findall(r"\d+", text.strip().lower()))
         if len(ocurrencies) > 0:
-            speed = ocurrencies[-1][1]
-        return float(speed)
+            speed = ocurrencies[-1]
+        return int(speed)
 
     @staticmethod
-    def print_one(pilot):
+    def print_one(pilot, fastest = False):
+        name = "The fastest pilot" if fastest else "Pilot name"
+        ship = "The fastest starship" if fastest else "Naves"
         naves_print = ""
         for starship in pilot.starships:
             naves_print += "\tName: {}\n\tModel: {}\n\tMax atmosphering speed: {}\n\n".format(
@@ -26,13 +27,12 @@ class Utils:
                 starship.model,
                 starship.max_speed,
             )
-        text_print = """
-------------------------------------------------------
-Pilot name: {}
-
-Naves:
-{}
-        """.format(pilot.name, naves_print)
+        text_print = """\n------------------------------------------------------\n{}:\n\t{}\n\n{}:\n{}""".format(
+                name,
+                pilot.name.encode('utf-8'),
+                ship,
+                naves_print.encode('utf-8')
+            )
         print(text_print)
 
     
@@ -48,7 +48,7 @@ Naves:
                     pilot = each_pilot
                 else:
                     continue
-        pilot.starships = starship
+        pilot.starships = [starship]
         return pilot
                 
 

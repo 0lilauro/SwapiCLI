@@ -13,7 +13,7 @@ class Starships:
     @name.setter
     def name(self, value):
         try: 
-            if type(value) is str and value.strip():
+            if type(value) is str and value.strip() is not '':
                 self._name = value.strip()
             else: 
                 raise TypeError("The value passed to name property is invalid")

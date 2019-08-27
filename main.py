@@ -31,9 +31,9 @@ Options:
 
 from docopt import docopt
 from schema import Schema, And, Or, Use, SchemaError
-import swapi_error
 from models.swapi_config import SwapiConfig
 from controllers.swapi_controller import SwapiController
+import utils.swapi_error as swapi_error
 
 if __name__ == '__main__':
   arguments = docopt(__doc__, version='Swapi CLI 1.0')
@@ -56,18 +56,13 @@ if __name__ == '__main__':
     '--help': Or(True, False, error=swapi_error.help),
     '--version': Or(True, False, error=swapi_error.version),
   })
-  
-  # 'FILE': [Use(open, error='FILE should be readable')],
-  # 'PATH': And(os.path.exists, error='PATH should exist'),
-  
+    
   try:
-    print(arguments)
     args = schema.validate(arguments)
     swapi_config = SwapiConfig()
     swapi_config.read_arguments(arguments)
     swapi_controller = SwapiController(swapi_config)
     response = swapi_controller.run()
-    # print(response)
   except SchemaError as e:
     exit(e)
 

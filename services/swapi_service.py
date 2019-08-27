@@ -5,6 +5,10 @@ class SwapiService:
     def __init__(self):
         self._base_url = "https://swapi.co/api/"
 
+    @property
+    def get(self):
+        return self._base_url
+
     def build_find_url(self, swapi_object, id=None):
         endpoint =  self._base_url + swapi_object + "/"
         if id is not None:
@@ -26,9 +30,4 @@ class SwapiService:
         return requests.get(
             endpoint,
             params=params
-        )        
-
-    def simple_request(self, endpoint):
-        return requests.get(
-            endpoint,
         )        

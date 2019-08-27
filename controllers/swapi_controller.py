@@ -29,31 +29,32 @@ class SwapiController:
             print(str(e))
     
     def run(self): 
-        if self._swapi_config.help or self._swapi_config.version:
-            return None
-        elif self._swapi_config.get:
-            return self.get_command()
-        elif self._swapi_config.pilot:
-            return self.pilot_command()
+        response = None 
+        if self.swapi_config.help or self.swapi_config.version:
+            pass
+        elif self.swapi_config.get:
+            self.get_command()
+        elif self.swapi_config.pilot:
+            self.pilot_command()
         else:
             print('Please use a valid command. Type "python main.py" to see the options and usage !')
-            return {}
+        return response
             
     def get_command(self): 
         swapi_service = SwapiService()
         endpoint = ""
-        if self._swapi_config.schema:
+        if self.swapi_config.schema:
             endpoint = swapi_service.build_schema_url(
-                self._swapi_config.object_swapi
+                self.swapi_config.object_swapi
             )
         else: 
             endpoint = swapi_service.build_find_url(
-                self._swapi_config.object_swapi,
-                self._swapi_config.id
+                self.swapi_config.object_swapi,
+                self.swapi_config.id
             )
         params = swapi_service.build_params(
-            self._swapi_config.wookiee,
-            self._swapi_config.search
+            self.swapi_config.wookiee,
+            self.swapi_config.search
         )
         result = {}
         try: 
@@ -65,7 +66,7 @@ class SwapiController:
         except:
             print("An error has been occurred in the attemp to convert the search to JSON") 
         finally: 
-            return result
+            pprint(result)
 
     def pilot_command(self):
         pilots = []
@@ -81,6 +82,7 @@ class SwapiController:
                 self.swapi_config.name.strip().lower()
             )
             result = {}
+            print("Loading results ...")
             try: 
                 response = swapi_service.make_request(
                     endpoint,
@@ -103,16 +105,17 @@ class SwapiController:
             next_page = swapi_service.build_find_url(
                 'people'
             )
+            print("Loading results ...")
             while next_page:
                 result = {}
                 try:
-                    response = swapi_service.simple_request(next_page)
+                    response = swapi_service.make_request(next_page)
                     if response.status_code == 200:
                         result = response.json()
                 except Exception:
                     print("An error has been occurred in the attemp to convert the search to JSON") 
                 finally:
-                    if result and 'results' in result:
+                    if result and 'count' in result and int(result['count']) > 0:
                         for pilot in result['results']:
                             filled_pilot = self.fill_pilot(pilot)
                             if filled_pilot is not None: 
@@ -121,8 +124,8 @@ class SwapiController:
                     next_page = result['next']
             
             max_pilot = Utils.find_max_speed(pilots)
-            pprint(max_pilot.__dict__)
-            pprint(max_pilot.starships.__dict__)
+            if max_pilot is not None:
+                Utils.print_one(max_pilot, True)
         return None
 
     def fill_starship(self, endpoint):
@@ -130,7 +133,7 @@ class SwapiController:
         swapi_service = SwapiService()
         result = {}
         try:
-            response = swapi_service.simple_request(endpoint)
+            response = swapi_service.make_request(endpoint)
             if response.status_code == 200:
                 result = response.json()
         except Exception:
@@ -151,11 +154,13 @@ class SwapiController:
         pilot = Pilot()
         if 'name' in pilot_response: 
             pilot.name = pilot_response['name']
-        if 'starships' in pilot_response:
-            for starship in pilot_response['starships']:
-                starship_response = self.fill_starship(starship)
-                if starship_response is not None:
-                    pilot.starships.append(starship_response)
+            if 'starships' in pilot_response and len(pilot_response['starships']) > 0:
+                for starship in pilot_response['starships']:
+                    starship_response = self.fill_starship(starship)
+                    if starship_response is not None:
+                        pilot.starships.append(starship_response)
+            else:
+                pilot = None
         else:
             pilot = None
         return pilot
