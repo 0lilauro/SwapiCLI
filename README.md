@@ -50,7 +50,7 @@ $ python test.py
   > * swapi.py (-v | --version)
       
 
-> This application is CLI (Command Line Interface) to interact with a web API called SWAPI - Star Wars API.
+This application is CLI (Command Line Interface) to interact with a web API called SWAPI - Star Wars API.
 It can be used to search without explicit request to the SWAPI, we build it for you and all you need to do is
 ask and see the results ;) 
 
