@@ -39,33 +39,28 @@ $ python test.py
 
 ## Usage
 
-  > * swapi.py 
-  > * swapi.py pilot --name=<name>
-  > * swapi.py pilot --fastest 
-  > * swapi.py get <object> 
-  > * swapi.py get <object> 
-  > * swapi.py get <object> (--id=<id>|--search=<text>|--schema)
-  > * swapi.py get <object> (--id=<id> --wookiee| --search=<text> --wookiee)
-  > * swapi.py (-h | --help)
-  > * swapi.py (-v | --version)
-      
+> - swapi.py 
+> - swapi.py pilot --name=  &lt;name>
+> - swapi.py pilot --fastest
+> - swapi.py get &lt;object>
+> - swapi.py get &lt;object>
+> - swapi.py get &lt;object> (--id=&lt;id>|--search=&lt;text>|--schema)
+> - swapi.py get &lt;object> (--id=&lt;id> --wookiee| --search=&lt;text> --wookiee)
+> - swapi.py (-h | --help)
+> - swapi.py (-v | --version)
+  
+This application is CLI (Command Line Interface) to interact with a web API called SWAPI Star Wars API. It can be used to search without explicit request to the SWAPI, we build it for you and all you need to do is ask and see the results.
 
-This application is CLI (Command Line Interface) to interact with a web API called SWAPI - Star Wars API.
-It can be used to search without explicit request to the SWAPI, we build it for you and all you need to do is
-ask and see the results ;) 
-
-## Options:
-
-  - --fastest                    | Using this option you can see the faster pilot and his starships.
-  - -n <name> --name=<name>     | Use this option so see the max atmosphering speed and starships from the pilot choosen.
-  - get <object>                | This command can be used to focus in a specificly object of swapi. It can be 'films', 'people', 'planets', 'species', 'starships' or 'vehicles' 
+## Options
+  - --fastest                   | Using this option you can see the faster pilot and his starships.
+  - -n &lt;name> --name=&lt;name>     | Use this option so see the max atmosphering speed and starships from the pilot choosen.
+  - get &lt;object>                | This command can be used to focus in a specificly object of swapi. It can be 'films', 'people', 'planets', 'species', 'starships' or 'vehicles' 
   - -h --help                   | Show this CLI options in the interface.
   - -v --version                | Show version.
-  - -i <id> --id=<id>           | Object's id. Used to find a exactly object in API's search.
-  - -s <text> --search=<text>   | Used to filters the set of objects returned.
+  - -i &lt;id> --id=&lt;id>           | Object's id. Used to find a exactly object in API's search.
+  - -s &lt;text> --search=&lt;text>   | Used to filters the set of objects returned.
   - --schema                    | With this option able, it's show a JSON that contains the data structure of <object> choosen.
   - --wookiee                   | This encoding is identical to JSON except with wookieee translations.
-
 
 ## Support
 Thank you for considering, contributing to the Swapi io! Rate them [Swapi](https://swapi.co/).
