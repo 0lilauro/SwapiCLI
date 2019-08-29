@@ -43,7 +43,7 @@ class Starships:
     def max_speed(self, value):
         try: 
             if (type(value) is int or type(value) is float) and value > -1:
-                self._max_speed = value.strip()
+                self._max_speed = value
             else: 
                 raise TypeError("The value passed to max_speed property is invalid")
         except Exception as e:

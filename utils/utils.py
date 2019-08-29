@@ -29,9 +29,9 @@ class Utils:
             )
         text_print = """\n------------------------------------------------------\n{}:\n\t{}\n\n{}:\n{}""".format(
                 name,
-                pilot.name.encode('utf-8'),
+                pilot.name,
                 ship,
-                naves_print.encode('utf-8')
+                naves_print
             )
         print(text_print)
 

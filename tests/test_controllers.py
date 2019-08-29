@@ -81,10 +81,9 @@ class VerifySwapiController(unittest.TestCase):
         
     def test_run_command(self):
         
-        swapi_controller_one = SwapiController()
         swp_config = self.generate_swapi_config()
         swp_config.help = True
-        swapi_controller_one.swapi_config = swp_config
+        swapi_controller_one = SwapiController(swp_config)
         self.assertIsNone(swapi_controller_one.run())
 
         swapi_controller_two = SwapiController()

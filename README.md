@@ -49,16 +49,15 @@ $ python test.py
 
 ## Usage
 
-
-  >   swapi.py 
-      swapi.py pilot --name=<name>
-      swapi.py pilot --fastest 
-      swapi.py get <object> 
-      swapi.py get <object> 
-      swapi.py get <object> (--id=<id>|--search=<text>|--schema)
-      swapi.py get <object> (--id=<id> --wookiee| --search=<text> --wookiee)
-      swapi.py (-h | --help)
-      swapi.py (-v | --version)
+  > * swapi.py 
+  > * swapi.py pilot --name=<name>
+  > * swapi.py pilot --fastest 
+  > * swapi.py get <object> 
+  > * swapi.py get <object> 
+  > * swapi.py get <object> (--id=<id>|--search=<text>|--schema)
+  > * swapi.py get <object> (--id=<id> --wookiee| --search=<text> --wookiee)
+  > * swapi.py (-h | --help)
+  > * swapi.py (-v | --version)
       
 
 This application is CLI (Command Line Interface) to interact with a web API called SWAPI - Star Wars API.

@@ -19,7 +19,7 @@ Options:
 
   --fastest                   Using this option you can see the faster pilot and his starships.
   -n <name> --name=<name>     Use this option so see the max atmosphering speed and starships from the pilot choosen.
-  get <object>                This command can be used to focus in a specificly object of swapi. \nIt can be 'films', 'people', 'planets', 'species', 'starships' or 'vehicles' 
+  get <object>                This command can be used to focus in a specificly object of swapi. It can be 'films', 'people', 'planets', 'species', 'starships' or 'vehicles' 
   -h --help                   Show this CLI options in the interface.
   -v --version                Show version.
   -i <id> --id=<id>           Object's id. Used to find a exactly object in API's search.

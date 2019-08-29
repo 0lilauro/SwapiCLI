@@ -20,25 +20,21 @@ class SwapiController:
     def swapi_config(self, value):
         try: 
             if isinstance(value, SwapiConfig):
-                self.swapi_config = value
-            elif value is None:
-                pass
+                self._swapi_config = value
             else: 
                 raise TypeError("The value passed to SwapiConfig property is not a SwapiModel instance")
         except Exception as e:
             print(str(e))
     
     def run(self): 
-        response = None 
-        if self.swapi_config.help or self.swapi_config.version:
+        if self._swapi_config.help or self._swapi_config.version:
             pass
-        elif self.swapi_config.get:
+        elif self._swapi_config.get:
             self.get_command()
-        elif self.swapi_config.pilot:
+        elif self._swapi_config.pilot:
             self.pilot_command()
         else:
             print('Please use a valid command. Type "python main.py" to see the options and usage !')
-        return response
             
     def get_command(self): 
         swapi_service = SwapiService()

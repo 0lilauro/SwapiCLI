@@ -26,12 +26,12 @@ class VerifySwapiConfig(unittest.TestCase):
         arguments['--schema'] = True
         arguments['--wookiee'] = True
         arguments['--id'] = 2
-        arguments['--search'] = True
+        arguments['--search'] = "test user"
         arguments['--help'] = True
         arguments['--version'] = True
-        arguments['--fastest'] = "test user"
-        arguments['--name'] = True
-        arguments['pilot'] = "test user"
+        arguments['--fastest'] = True
+        arguments['--name'] = "asdoasd"
+        arguments['pilot'] = True
 
         swapi_config = SwapiConfig()
         swapi_config.read_arguments(arguments)
