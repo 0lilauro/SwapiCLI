@@ -62,7 +62,7 @@ if __name__ == '__main__':
     swapi_config = SwapiConfig()
     swapi_config.read_arguments(arguments)
     swapi_controller = SwapiController(swapi_config)
-    response = swapi_controller.run()
+    swapi_controller.run()
   except SchemaError as e:
     exit(e)
 

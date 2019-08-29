@@ -4,7 +4,7 @@
 This is an CLI (Command Line Interface) that which communicates with [Swapi Io](https://swapi.co/).
 ## About
 
-The language used  in this CLI is [Python3.7](https://docs.python.org/3/index.html), and to build this application was used too [docopt](https://github.com/docopt/docopt) as main library. Being a easy way to everyone reuse or read the code.
+The language used  in this CLI is [Python3.6](https://docs.python.org/3/index.html), and to build this application was used too [docopt](https://github.com/docopt/docopt) as main library. Being a easy way to everyone reuse or read the code.
 #### Libraries used:
 - [Docopt](https://github.com/docopt/docopt) - Docopt is Pythonic command line arguments parser
 - [Schema](https://pypi.org/project/schema/) - Schema is a library for validating Python data structures.
@@ -12,19 +12,9 @@ The language used  in this CLI is [Python3.7](https://docs.python.org/3/index.ht
 
 *Everything else was built using a built-ins modules.*
 
-
-## Environment
-If you don't have Python 3.7 already installed, you can use the standard config that is saved in the root directory from project.
-To use this follow the next steps:
-- All needed is go to a terminal and activate the environment. To active:
-```sh
-$ source env/bin/activate
-```
-
 ## Installation
 
-Is required [Python3.7](https://docs.python.org/3/index.html) and [PIP](https://pypi.org/project/pip/) to run this application.
-if you had made the environment activation, everything will works following the next steps:
+Is required [Python3.6](https://docs.python.org/3/index.html) and [PIP](https://pypi.org/project/pip/) to install the required modules.
 
 Install the modules which is saved in the file **requirements.txt** on the root directory.
 
@@ -60,7 +50,7 @@ $ python test.py
   > * swapi.py (-v | --version)
       
 
-This application is CLI (Command Line Interface) to interact with a web API called SWAPI - Star Wars API.
+> This application is CLI (Command Line Interface) to interact with a web API called SWAPI - Star Wars API.
 It can be used to search without explicit request to the SWAPI, we build it for you and all you need to do is
 ask and see the results ;) 
 
